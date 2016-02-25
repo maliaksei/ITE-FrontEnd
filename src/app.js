@@ -5,12 +5,15 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux'
 
 import './styles/style.less';
-import reducers from './scripts/reducers'
+import './js/bootstrap/bootstrap.min';
+import './js/plugins';
+import reducers from './scripts/reducers/index'
 import App from './scripts/components/app';
-import Home from './scripts/components/home';
-import About from './scripts/components/about';
-import NoMatch from './scripts/components/no-match';
-import StartTop from './scripts/components/start-top';
+import Home from './scripts/components/Home';
+import About from './scripts/components/About';
+import NoMatch from './scripts/components/NoMatch';
+import StartTop from './scripts/components/StartTop';
+
 
 let store = createStore(reducers);
 

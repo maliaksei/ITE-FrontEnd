@@ -29,7 +29,7 @@ $(document).ready(function(){
 
 /* Sidebar Show-Hide On Mobile */
 $(document).ready(function(){
-    $(".sidebar-open-button-mobile").click(function(){
+    $(".sidebar-open-button-mobile").on('click', function(){
         $(".sidebar").toggle(150);
     });
 });

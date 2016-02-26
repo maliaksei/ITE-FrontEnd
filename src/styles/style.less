@@ -1,25 +1,21 @@
-@import "bootstrap.css";
-@import "font-awesome.min.css";
-@import "responsive.css";
-@import "root.css";
-@import "shortcuts.css";
-@import "style.css";
-@import "./plugin/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css";
-@import "./plugin/bootstrap-select/bootstrap-select.css";
-@import "./plugin/bootstrap-toggle/bootstrap-toggle.min.css";
-@import "./plugin/bootstrap-wysihtml5/bootstrap-wysihtml5.css";
-@import "./plugin/chartist/chartist.min.css";
-@import "./plugin/datatables/datatables.css";
-@import "./plugin/date-range-picker/daterangepicker-bs3.css";
-@import "./plugin/fullcalendar/fullcalendar.css";
-@import "./plugin/rickshaw/graph.css";
-@import "./plugin/rickshaw/detail.css";
-@import "./plugin/rickshaw/legend.css";
-@import "./plugin/rickshaw/rickshaw.css";
-@import "./plugin/summernote/summernote-bs3.css";
-@import "./plugin/summernote/summernote.css";
-@import "./plugin/sweet-alert/sweet-alert.css";
+@import url("root.css");
+@import url("./plugin/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css");
+@import url("./plugin/bootstrap-select/bootstrap-select.css");
+@import url("./plugin/bootstrap-toggle/bootstrap-toggle.min.css");
+@import url("./plugin/bootstrap-wysihtml5/bootstrap-wysihtml5.css");
+@import url("./plugin/chartist/chartist.min.css");
+@import url("./plugin/datatables/datatables.css");
+@import url("./plugin/date-range-picker/daterangepicker-bs3.css");
+@import url("./plugin/fullcalendar/fullcalendar.css");
+@import url("./plugin/rickshaw/graph.css");
+@import url("./plugin/rickshaw/detail.css");
+@import url("./plugin/rickshaw/legend.css");
+@import url("./plugin/rickshaw/rickshaw.css");
+@import url("./plugin/summernote/summernote-bs3.css");
+@import url("./plugin/summernote/summernote.css");
+@import url("./plugin/sweet-alert/sweet-alert.css");
 
+@import url("../../node_modules/react-bootstrap-table/css/react-bootstrap-table.css");
 
 /* Colors */
 @color0: #3D464D; /* sidebar background */
@@ -4061,4 +4057,39 @@ Widgets
     opacity: 0.7;
   }
 }
+
+/*================================================================================
+	Item Name: Kode
+	Description: Premium Bootstrap Admin Template
+	Author: Egemen Kapusuz
+	Author URL: http://www.themeforest.net/user/egemem
+================================================================================*/
+
+/* =================================================================================
+smaller than 1280
+================================================================================= */
+@media screen and (max-width: 1280px) {
+  .topmenu{display: none;}
+}
+
+/* =================================================================================
+smaller than 1024
+================================================================================= */
+@media screen and (max-width: 1024px) {
+  .profilebox b{display: none;}
+  .searchform{display: none;}
+  .sidebar{display: none;}
+  .content{margin-left: 0 !important;}
+  .sidebar-open-button{display: none;}
+  .sidebar-open-button-mobile{display: block;}
+  .social-stats{bottom: 100px;}
+  .topstats li{width: 33%;}
+  .demo-sidebarmenu .sidebar{display: block;}
+}
+
+/* =================================================================================
+smaller than 760
+================================================================================= */
+
+
 

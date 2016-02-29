@@ -1,0 +1,10 @@
+.multiselect-container div.checkbox {
+    margin: 0;
+}
+.multiselect-container label {
+    margin: 0;
+    white-space: nowrap;
+}
+.multiselect-container div.checkbox {
+    padding: 5px 15px 5px 35px;
+}

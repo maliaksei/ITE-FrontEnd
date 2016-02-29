@@ -5,10 +5,18 @@ import React,{Component} from 'react';
 import {Input} from 'react-bootstrap';
 import Multiselect from 'react-bootstrap-multiselect';
 
+
 class AddCounry extends Component {
+
     render() {
         return (
             <div>
+                <Multiselect data={products} multiple  templates={{li:'<li><div class="checkbox checkbox-primary"><label></label></div></li>'}}
+                             onChange={
+                             function(option, checked, select) {
+                             createField(option, checked, select);
+                }
+            } />
                 <div className="form-horizontal">
                     <Input
                         type="text"
@@ -30,7 +38,6 @@ class AddCounry extends Component {
                         wrapperClassName="col-sm-4"
                         hasFeedback
                         feedbackIcon={<i className="form-control-feedback fa fa-pencil" key="icon" />} />
-                    <Multiselect data={products} multiple />
                 </div>
                 <br/>
             </div>
@@ -38,12 +45,19 @@ class AddCounry extends Component {
     }
 }
 
-var products = [{
-    value: 'One',
-    selected:true
-},{
-    value: 'Two',
-    selected:false
-}];
+function createField(option, checked, select){
+    alert('Changed option ' + $(option).val() + '.');
+}
+
+var products = [
+    {
+        value: 'One',
+        selected:true
+    },
+    {
+        value: 'Two',
+        selected:false
+    }
+];
 
 export default AddCounry;

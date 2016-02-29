@@ -7,6 +7,7 @@ import { createStore } from 'redux'
 import './styles/style.less';
 import './js/bootstrap/bootstrap.min';
 import './js/plugins';
+import './js/bootstrap-multiselect/awesome-multiselect';
 import reducers from './scripts/reducers/index'
 import App from './scripts/components/app';
 import Home from './scripts/components/Home';

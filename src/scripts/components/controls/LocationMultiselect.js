@@ -12,12 +12,21 @@ export default class LocationMultiselect extends Component {
         deselectLocation: PropTypes.func.isRequired
     }
 
-    componentDidMount()
+    componentDidMount(){
+        setMultiselect();
+    }
+
+    componentWillReceiveProps(nextProps)
     {
+        this.setState({ locations: nextProps.locationList }, this.callback);
+    }
+
+    callback(){
         setMultiselect();
     }
 
     render () {
+
         return (
             <Multiselect data={this.state.locations} multiple  templates={{li:'<li><div class="checkbox checkbox-primary"><label></label></div></li>'}}
                          onChange={this.handleChange.bind(this)}

@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory, Redirect  } from 'react-router';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware  } from 'redux'
+import thunk from 'redux-thunk'
 
 import './styles/style.less';
 import './js/bootstrap/bootstrap.min';
@@ -20,7 +21,7 @@ import AddRegion from './scripts/components/catalogs/regions/Addregion'
 import ListRegion from './scripts/components/catalogs/regions/ListRegion';
 
 
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render (
     <Provider store={store}>

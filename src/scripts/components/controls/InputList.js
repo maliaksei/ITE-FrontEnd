@@ -15,7 +15,7 @@ export default class InputList extends Component{
         var selectedIndex = this.props.locationList.findIndex((function(item) {
             return item.selected === true;
         }));
-        var asd = <div className="form-group">
+        var buttons = <div className="form-group">
             <div className="col-sm-offset-2 col-sm-10">
                 <button type="submit" className="btn btn-default">Submit</button>
             </div>
@@ -27,11 +27,10 @@ export default class InputList extends Component{
                     <i className="fa fa-warning"/>
                     Location are not selected.
                 </div>;
-        }else{
-            component = this.props.locationList.map(function(item){
-                if(item.selected)
-                {
-                    return( <Input
+        }else {
+            component = this.props.locationList.map(function (item) {
+                if (item.selected) {
+                    return ( <Input
                         type="text"
                         name={item.value}
                         key={item.value}
@@ -41,23 +40,16 @@ export default class InputList extends Component{
                         labelClassName="col-sm-2"
                         wrapperClassName="col-sm-4"
                         hasFeedback
-                        feedbackIcon={<i className="form-control-feedback fa fa-pencil" key="icon" />} />);
+                        feedbackIcon={<i className="form-control-feedback fa fa-pencil" key="icon" />}/>);
                 }
             });
-            console.log(component);
+            component = component.push(buttons);
         }
 
         return(
             <div>
                 <br/>
                 {component}
-
-                <div className="form-group">
-                    <div className="col-sm-offset-2 col-sm-10">
-                        <button type="submit" className="btn btn-default">Submit</button>
-                        <button type="submit" className="btn btn-default">Cancel</button>
-                    </div>
-                </div>
             </div>
         );
     }

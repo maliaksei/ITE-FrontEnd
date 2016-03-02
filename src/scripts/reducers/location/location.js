@@ -4,33 +4,7 @@
 import * as types from '../../actions/location/types';
 import Immutable,{ Map } from 'immutable';
 
-const initialState = {
-    USA: {
-        value: 'USA',
-        selected:false
-    },
-    Russia: {
-        value: 'Russia',
-        selected:false
-    },
-    UK: {
-        value: 'UK',
-        selected:false
-    }
-};
-
-const products = [
-    {
-        value: 'Russia',
-        selected:true
-    },
-    {
-        value: 'USA',
-        selected:false
-    }
-];
-
-const locations = (state = Immutable.List(products), action) => {
+const locations = (state = Immutable.List([]), action) => {
     switch (action.type) {
         case types.SELECT_LOCATION:
             return state.update(
@@ -49,6 +23,8 @@ const locations = (state = Immutable.List(products), action) => {
                     return {value:item.value, selected: false};
                 }
             );
+        case types.SET_LOCATION:
+            return Immutable.List(action.value);
         //return state.updateIn([action.value,'selected'], value=>false);
         default:
             return state

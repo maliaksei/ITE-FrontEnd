@@ -15,11 +15,7 @@ export default class InputList extends Component{
         var selectedIndex = this.props.locationList.findIndex((function(item) {
             return item.selected === true;
         }));
-        var buttons = <div className="form-group">
-            <div className="col-sm-offset-2 col-sm-10">
-                <button type="submit" className="btn btn-default">Submit</button>
-            </div>
-        </div>
+
         if(selectedIndex == -1)
         {
             component =
@@ -43,13 +39,26 @@ export default class InputList extends Component{
                         feedbackIcon={<i className="form-control-feedback fa fa-pencil" key="icon" />}/>);
                 }
             });
-            component = component.push(buttons);
+            component = component.push(<ActionButtons key="actions"/>);
         }
 
         return(
             <div>
                 <br/>
                 {component}
+            </div>
+        );
+    }
+}
+
+class ActionButtons extends Component{
+
+    render(){
+        return(
+            <div className="form-group">
+                <div className="col-sm-offset-2 col-sm-10">
+                    <button type="submit" className="btn btn-default">Submit</button>
+                </div>
             </div>
         );
     }

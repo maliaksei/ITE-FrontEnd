@@ -1,0 +1,8 @@
+/**
+ * Created by a.milko on 29.02.2016.
+ */
+export const GET_COUNTRIES = 'GET_COUNTRIES';
+export const ADD_COUNTRY = 'ADD_COUNTRY';
+export const EDIT_COUNTRY = 'EDIT_COUNTRY';
+export const REMOVE_COUNTRY = 'REMOVE_COUNTRY';
+export const SET_LOADING_VISIBLE_COUNTRIES = 'SET_LOADING_VISIBLE_COUNTRIES';

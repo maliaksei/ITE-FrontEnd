@@ -6,6 +6,7 @@ import LocationMultiselect from '../../controls/LocationMultiselect';
 import InputList from '../../controls/InputList';
 import Loader from '../../controls/Loader';
 import * as LocationActions from '../../../actions/location/actions';
+import * as AddCountryActions from '../../../actions/list-country/actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -16,6 +17,7 @@ import { bindActionCreators } from 'redux';
     }),
     dispatch => ({
         locationActions: bindActionCreators(LocationActions, dispatch),
+        AddCountryActions: bindActionCreators(AddCountryActions, dispatch)
     })
 )
 
@@ -28,6 +30,7 @@ class AddCountry extends Component {
         {
             this.props.locationActions.getLocation();
         }
+
     }
 
     render() {
@@ -37,7 +40,6 @@ class AddCountry extends Component {
                                      deselectLocation={this.props.locationActions.deselectLocation} />
                 <div className="form-horizontal">
                     <InputList locationList={this.props.location}/>
-
                 </div>
                 <Loader visible={this.props.loadingVisible}/>
             </div>

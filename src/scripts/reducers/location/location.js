@@ -11,7 +11,7 @@ const locations = (state = Immutable.List([]), action) => {
                 state.findIndex(function(item) {
                     return item.value === action.value;
                 }), function(item) {
-                    return {value:item.value, selected: true};
+                    return {value:item.value, selected: true, code:item.code};
                 }
             );
         //return state.updateIn([action.value,'selected'], value=>true);
@@ -20,7 +20,7 @@ const locations = (state = Immutable.List([]), action) => {
                 state.findIndex(function(item) {
                     return item.value === action.value;
                 }), function(item) {
-                    return {value:item.value, selected: false};
+                    return {value:item.value, selected: false, code:item.code};
                 }
             );
         case types.SET_LOCATION:

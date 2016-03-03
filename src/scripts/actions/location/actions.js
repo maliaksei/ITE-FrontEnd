@@ -4,18 +4,6 @@
 import * as types from './types';
 import * as loadingActions from '../loader/actions';
 
-//todo: remove after adding fetch request
-const products = [
-    {
-        value: 'Russia',
-        selected:true
-    },
-    {
-        value: 'USA',
-        selected:false
-    }
-];
-
 export const selectLocation = value => {
     return {
         type: types.SELECT_LOCATION,
@@ -34,10 +22,7 @@ export const getLocation = () => {
     return (dispatch) => {
         dispatch(loadingActions.showLoading());
         setTimeout(() => {
-            console.log('getLocation');
-            console.log('getLocation',products);
-            //todo: add fetch request
-            dispatch(setLocationData(products));
+            dispatch(setLocationData(GetLocations()));
             dispatch(loadingActions.hideLoading());
         }, 1000);
     }
@@ -50,4 +35,33 @@ export const setLocationData = value =>{
         value
     }
 };
+
+function GetLocations() {
+    var response = [
+        {
+            "CultureCode": "ru-RU",
+            "CultureName": "Russian"
+        },
+        {
+            "CultureCode": "en-US",
+            "CultureName": "English"
+        }
+    ];
+
+    console.log(convertLocations(response));
+    return convertLocations(response);
+}
+
+function convertLocations(array) {
+    var map = [];
+    for(var i = 0; i < array.length; i++){
+        var item = array[i];
+        var mappedItem = {};
+        mappedItem.value = item.CultureName;
+        mappedItem.code = item.CultureCode;
+        mappedItem.selected = false;
+        map.push(mappedItem);
+    }
+    return map;
+}
 

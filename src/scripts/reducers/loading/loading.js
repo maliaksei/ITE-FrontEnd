@@ -5,7 +5,7 @@ import * as types from '../../actions/loader/types';
 import Immutable,{ Map } from 'immutable';
 
 
-const locations = (state = Map({}), action) => {
+const loading = (state = Map({}), action) => {
     switch (action.type) {
         case types.LOADING:
             return state.set('visible', true);
@@ -16,4 +16,4 @@ const locations = (state = Map({}), action) => {
     }
 };
 
-export default locations;
+export default loading;

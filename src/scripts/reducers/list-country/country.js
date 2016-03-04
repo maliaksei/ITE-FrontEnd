@@ -9,7 +9,7 @@ var initialState = {
     isLoading: false
 };
 
-const locations = (state = Map(initialState), action) => {
+const countries = (state = Map(initialState), action) => {
     switch (action.type) {
         case types.ADD_COUNTRY:
             return state.push(action.value);
@@ -30,4 +30,4 @@ const locations = (state = Map(initialState), action) => {
     }
 };
 
-export default locations;
+export default countries;

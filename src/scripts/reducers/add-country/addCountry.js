@@ -10,7 +10,7 @@ var initialState = {
     status: ""
 };
 
-const locations = (state = Map(initialState), action) => {
+const addCountry = (state = Map(initialState), action) => {
     switch (action.type) {
         case types.SUCCESS_RESPONSE_COUNTRY:
             return state.update('country',()=>Map(action.value));
@@ -21,4 +21,4 @@ const locations = (state = Map(initialState), action) => {
     }
 };
 
-export default locations;
+export default addCountry;

@@ -2,57 +2,163 @@
  * Created by a.milko on 01.03.2016.
  */
 import React,{Component, PropTypes} from 'react';
-import {Input} from 'react-bootstrap';
-import Immutable,{ Map } from 'immutable';
+import {Input, FormGroup, Glyphicon} from 'react-bootstrap';
 
 export default class InputList extends Component{
     static propTypes = {
         locationList: PropTypes.object.isRequired
+    };
+
+    handleChange = e => {
+
+        var id = e.target.id;
+        if(id === 'internalName')
+        {
+            this.setState({internalName: e.target.value});
+        }else{
+            let newStateLocalizations = this.state.localizations;
+            for(let i=0;i<newStateLocalizations.length; i++)
+            {
+                if(newStateLocalizations[i].cultureCode == id)
+                {
+                    newStateLocalizations[i].name = e.target.value;
+                }
+            }
+            this.setState({localizations: newStateLocalizations});
+        }
+    };
+
+    constructor (props, context) {
+        super(props, context);
+        this.state = {
+            internalName: '',
+            localizations: this.setStates(this.props.locationList.toArray())
+        };
     }
 
-    render(){
-        var component;
-        var selectedIndex = this.props.locationList.findIndex((function(item) {
+    componentWillReceiveProps(nextProps)
+    {
+        this.setState({ localizations: this.setStates(nextProps.locationList.toArray())});
+    }
+
+    //todo:add UPDATE!!!!
+    setStates(locations){
+        let states = [];
+        for(let i=0;i<locations.length; i++)
+        {
+            if(locations[i].selected)
+            {
+                let state = {};
+                state.cultureCode = locations[i].code;
+                state.name = '';
+                states.push(state);
+            }
+
+        }
+        return states;
+    }
+
+    pencilGlyphicon(){
+        return(<Glyphicon glyph="pencil" />);
+    }
+
+    getForm() {
+        return (
+            <div>
+                <br/>
+                {this.getInternalNameInput()}
+                {this.getInputs()}
+                <ActionButtons key="actions"/>
+            </div>
+        );
+    }
+
+    getInternalNameInput()
+    {
+        return (
+            <Input
+                id="internalName"
+                type="text"
+                name='Internal Name'
+                key='InternalName'
+                placeholder={'Internal Name' }
+                required="required"
+                label={ <span>Internal Name<span className="text-danger small">*</span></span> }
+                labelClassName="col-sm-2"
+                wrapperClassName="col-sm-4"
+                ref="InternalName"
+                hasFeedback
+                onChange={ this.handleChange.bind(this) }
+                addonAfter={this.pencilGlyphicon()}/>
+        );
+    }
+
+    getDefaultForm()
+    {
+        return (
+            <div>
+                <br/>
+                {this.getInternalNameInput()}
+                <ActionButtons key="actions"/>
+            </div>
+        );
+    }
+
+    getInputs() {
+        return this.props.locationList.map((item) => {
+            if (item.selected) {
+                return ( <Input
+                    id={item.code}
+                    type="text"
+                    name={item.value}
+                    key={item.value}
+                    placeholder={'Name on ' + item.value }
+                    required="required"
+                    label={ <span> {item.value }<span className="text-danger small">*</span></span> }
+                    labelClassName="col-sm-2"
+                    wrapperClassName="col-sm-4"
+                    hasFeedback
+                    onChange={ this.handleChange }
+                    addonAfter={this.pencilGlyphicon()}/>);
+            }
+        });
+    }
+
+    render() {
+
+        console.log(this.state.localizations);
+        const selectedIndex = this.props.locationList.findIndex((item)=> {
             return item.selected === true;
-        }));
+        });
 
         if(selectedIndex == -1)
         {
-            component =
+            return this.getDefaultForm();
+
+        }else {
+            return this.getForm();
+        }
+    }
+}
+
+
+class WarningMessage extends Component{
+
+
+    render(){
+        return (
+            <div>
+                <br/>
                 <div className="kode-alert kode-alert-icon alert5-light">
                     <i className="fa fa-warning"/>
                     Location are not selected.
-                </div>;
-        }else {
-            component = this.props.locationList.map(function (item) {
-                if (item.selected) {
-                    return ( <Input
-                        type="text"
-                        name={item.value}
-                        key={item.value}
-                        placeholder={'Name in ' + item.value }
-                        required="required"
-                        label={ <span> {item.value }<span className="text-danger small">*</span></span> }
-                        labelClassName="col-sm-2"
-                        wrapperClassName="col-sm-4"
-                        hasFeedback
-                        feedbackIcon={<i className="form-control-feedback fa fa-pencil" key="icon" />}/>);
-                }
-            });
-            component = component.push(<ActionButtons key="actions"/>);
-        }
-
-        return(
-            <div>
-                <br/>
-                {component}
+                </div>
             </div>
         );
     }
 }
 
 class ActionButtons extends Component{
-
     render(){
         return(
             <div className="form-group">
@@ -63,3 +169,5 @@ class ActionButtons extends Component{
         );
     }
 }
+
+

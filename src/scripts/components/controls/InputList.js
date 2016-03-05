@@ -38,10 +38,9 @@ export default class InputList extends Component{
 
     componentWillReceiveProps(nextProps)
     {
-        this.setState({ localizations: this.setStates(nextProps.locationList.toArray())});
+        this.setState({ localizations: this.updateStates(nextProps.locationList.toArray())});
     }
 
-    //todo:add UPDATE!!!!
     setStates(locations){
         let states = [];
         for(let i=0;i<locations.length; i++)
@@ -52,6 +51,33 @@ export default class InputList extends Component{
                 state.cultureCode = locations[i].code;
                 state.name = '';
                 states.push(state);
+            }
+
+        }
+        return states;
+    }
+
+    updateStates(locations){
+        let states = this.state.localizations;
+        for(let i=0;i<locations.length; i++)
+        {
+            if(locations[i].selected)
+            {
+                let index = states.findIndex((item) => {return item.cultureCode === locations[i].code});
+                if(index === -1)
+                {
+                    let state = {};
+                    state.cultureCode = locations[i].code;
+                    state.name = '';
+                    states.push(state);
+                }
+            }
+            else{
+                let index = states.findIndex((item) => {return item.cultureCode === locations[i].code});
+                if(index != -1)
+                {
+                    states.splice(index,1);
+                }
             }
 
         }

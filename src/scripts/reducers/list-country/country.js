@@ -15,7 +15,7 @@ const countries = (state = Map(initialState), action) => {
             return state.push(action.value);
         case types.EDIT_COUNTRY:
             return state.update(
-                state.findIndex(function(item) {
+                state.findIndex((item)=> {
                     return item.value.Id === action.value.Id;
                 }), function(item) {
                     return item.value;
